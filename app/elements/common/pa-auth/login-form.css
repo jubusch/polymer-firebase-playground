@@ -1,0 +1,109 @@
+<style>
+html /deep/ .login-form {
+    background: #4c4c4c;
+    color: #ffffff;
+}
+html /deep/ .login-form >    :host {
+      @apply(--layout-horizontal);
+      @apply(--layout-wrap);
+      @apply(--layout-around-justified);
+      max-width: 801px;
+      margin: 0 auto;
+    }
+html /deep/ .login-form >    :host(.reverse) {
+      @apply(--layout-horizontal-reverse);
+      @apply(--layout-wrap-reverse);
+    }
+html /deep/ .login-form >    :host(.vertical) {
+      @apply(--layout-vertical);
+      @apply(--layout-center);
+    }
+html /deep/ .login-form >    :host(.vertical-reversed) {
+      @apply(--layout-vertical-reverse);
+    }
+html /deep/ .login-form >    .verticalDivider{
+      border-right: 1px solid #e0e0e0;
+      margin: 0 auto;
+      height: 100%;
+      min-height: 300px;
+    }
+html /deep/ .login-form >    .verticalDivider div{
+      position: relative;
+      top: 100px;
+      background-color: white;
+      font-style: italic;
+      color: grey;
+      font-weight: lighter;
+      height: 80%;
+      width: 11px;
+      left: 5px;
+      font-size: 12px;
+      padding: 10px 0 10px 0;
+    }
+html /deep/ .login-form > .horizontalDivider{
+      border-top: 1px solid #e0e0e0;
+      text-align: center;
+      margin: 50px 35px 50px 35px;
+      height: 1px;
+      max-width: 400px;
+      min-width: 300px;
+    }
+
+html /deep/ .login-form > .horizontalDivider div{
+
+      background-color: white;
+      position: relative;
+      top: -8px;
+      width: 80%;
+      margin: 0 auto;
+      height: 20px;
+      font-style: italic;
+      color: grey;
+      font-weight: lighter;
+      font-size: 12px;
+    }
+html /deep/ .login-form >    .signInButton img{
+    padding: 0 8px 0 2px;
+    max-height: 15px;
+    }
+html /deep/ .login-form >    .signInButton{
+    width: 220px;
+    text-align: left;
+    margin-bottom: 15px;
+    text-transform: none;
+    min-height: 40px;
+    }
+html /deep/ .login-form >    .signInButton.mini {
+    width: 150px;
+    }
+html /deep/ .login-form >    #googSignIn{
+    background-color: white;
+    }
+html /deep/ .login-form >   #fbSignIn{
+    background-color: #3B5999;
+    color: white;
+    }
+html /deep/ .login-form >    #twtrSignIn{
+    background-color: #55ACEE;
+    color: white;
+    }
+html /deep/ .login-form >    #ghSignIn{
+    background-color: #F5F5F5
+    }
+html /deep/ .login-form >    #anonSignIn{
+    background-color: #303030;
+    color: white;
+    }
+html /deep/ .login-form >    #fbSignIn:hover{
+    background-color: #4265b0;
+    }
+html /deep/ .login-form >    #twtrSignIn:hover{
+    background-color: #5cb9ff;
+    }
+html /deep/ .login-form >    #ghSignIn:hover{
+    background-color: white;
+    }
+html /deep/ .login-form >    #anonSignIn:hover{
+    background-color: #414040;
+    }
+</style>
