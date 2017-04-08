@@ -82,10 +82,28 @@
 
    
 <paper-button on-click="feedback"  hidden$="{{user}}">Sign In</paper-button>
-<paper-button raised on-click="signOut" hidden$="{{!user}}">Sign Out</paper-button>
+<paper-button on-click="open" hidden$="{{!user}}"><h4> [[user.displayName]]</h4> </paper-button>
 <!--<paper-button raised onclick="document.querySelector('#animated').toggle()">Sign In</paper-button>-->
 <!--<a href="javascript:void(0)" show$="{{!user}}" class="singin-link" on-click="signInClick">Sign in</a>-->
 <!-- entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop -->
+   
+      
+        <!--<img src="{{profile.picture}}">-->
+
+      <iron-dropdown id="dropdown"
+                     vertical-align="top"
+                     horizontal-align="right"
+                     open-animation-config="[[openAnimationConfig]]"
+                     close-animation-config="[[closeAnimationConfig]]">
+
+        <div class="dropdown-content">
+         
+          <a data-route="user-profile" href="/user-profile" on-click="close">Profile</a>
+          <a href="javascript:void(0)" on-click="signOut">Sign out</a>
+        </div>
+
+      </iron-dropdown>
+  
 
 <paper-dialog id="dialogFeedback" class="login-form" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
 
@@ -109,25 +127,7 @@
 </paper-dialog>
  
   
-    <div class="account-menu" >
-      <div class="profile-pic dropdown-trigger" on-click="open">
-        <!--<img src="{{profile.picture}}">-->
-      </div>
 
-      <iron-dropdown id="dropdown"
-                     vertical-align="top"
-                     horizontal-align="right"
-                     open-animation-config="[[openAnimationConfig]]"
-                     close-animation-config="[[closeAnimationConfig]]">
-
-        <div class="dropdown-content">
-          <div class="username"><span>{{user.name}}</span> <span>{{user.lastname}}</span></div>
-          <a data-route="user-profile" href="/user-profile" on-click="close">Profile</a>
-          <a href="javascript:void(0)" on-click="signOut">Sign out</a>
-        </div>
-
-      </iron-dropdown>
-    </div>
 
   </template>
 
@@ -205,7 +205,8 @@
         },
 
         signOut: function() {
-          return this.$.social.logout();
+          this.$.social.logout();
+          this.$.dropdown.close();
         },
 
         open: function() {

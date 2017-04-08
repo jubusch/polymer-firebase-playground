@@ -62,10 +62,8 @@
         on-error="handleError">
     </firebase-auth>
     
-    <template is="dom-if" if="[[user]]">
-        <h1> Welcome [[user.displayName]]</h1> 
-    </template> 
-      <paper-button on-tap="logout" hidden$="[[!user]]">logout</paper-button>
+  
+      
       <paper-button id="googSignIn" class$="signInButton {{_getMiniClass()}}" on-tap="loginGoogle"  raised>
 
         <div style="width:15px; height:15px; padding: 0 8px 0 2px;">
