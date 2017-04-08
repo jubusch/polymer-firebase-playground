@@ -2,6 +2,8 @@
 <html lang="">
 
 <head>
+
+  <link rel="import" href="../bower_components/polymer/polymer.html">
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,6 +47,8 @@
 
 </head>
 
+
+
 <body unresolved class="fullbleed layout vertical">
 
 <!-- entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop -->
@@ -52,8 +56,13 @@
 <span id="browser-sync-binding"></span>
 <template is="dom-bind" id="app">
 
-  <pa-auth-data id="data" location='{{location}}' user="{{user}}" todos="{{todos}}" profile="{{profile}}"></pa-auth-data>
-
+<!--<pa-auth-data id="data" location='{{location}}' user="{{user}}"  todos="{{todos}}" profile="{{profile}}"></pa-auth-data>-->
+  <firebase-app 
+        id="firebase"
+        auth-domain="nito-42880.firebaseapp.com"
+        database-url="https://nito-42880.firebaseio.com/"
+        api-key="AIzaSyACxbZKZa88hJ6u91d_kKsFD0kCtAmAuWY">
+    </firebase-app>
   <paper-scroll-header-panel fixed>
 
     <paper-toolbar class="top-toolbar">
@@ -72,24 +81,32 @@
       } 
       
       </style>
-       <paper-icon-button icon="menu" class="toggle-drawer" on-click="toggleDrawer"></paper-icon-button>
-      <div id="logo-container"><a data-route="dashboard" href="/" on-click="onDataRouteClick">
-      <img src="nito.png" widh="150px" height="40px"/></a></div>
-     
-      <span class="flex"></span>
- <!--      <pa-search></pa-search>-->
-      <pa-auth-info class="auth-text" location='{{location}}' user="{{user}}"  profile='{{profile}}' on-sign-out="signOut" on-sign-in="signIn"></pa-auth-info>
-    </paper-toolbar>
+    
 
-    <paper-drawer-panel id="paperDrawerPanel">
+       <paper-icon-button icon="menu" hidden$="[[!user]]" class="toggle-drawer" on-click="toggleDrawer"></paper-icon-button>
+      <div id="logo-container"><a data-route="dashboard" href="/" on-click="onDataRouteClick">
+      <img src="nito.png" widh="150px" height="40px" /></a></div>
+     
+      <span class="flex"> 
+      </span>
+
+ <!--      <pa-search></pa-search>-->
+
+      <!--<pa-auth-data  location='{{location}}' user="{{user}}" todos="{{todos}}" profile="{{profile}}"></pa-auth-data>--> 
+      <pa-auth-info class="auth-text" user="{{user}}"></pa-auth-info>
+    </paper-toolbar>
+    <div hidden$="[[user]]">
+    <img src="background_landing.png" width="100%" height="100%" />
+    </div>
+    <paper-drawer-panel id="paperDrawerPanel" hidden$="[[!user]]">
 
       <paper-scroll-header-panel drawer>
 
-        <pa-menu route="{{route}}" user="{{user}}"></pa-menu>
+        <pa-menu route="{{route}}" hidden$="[[!user]]" user="{{user}}"></pa-menu>
 
       </paper-scroll-header-panel>
 
-      <paper-scroll-header-panel main>
+      <paper-scroll-header-panel main hidden$="[[!user]]">
 
         <pa-pages route="{{route}}" user="{{user}}" profile='{{profile}}' todos="{{todos}}" on-sign-in="signIn"></pa-pages>
 
@@ -104,7 +121,7 @@
 
 <!-- build:js scripts/app.js -->
 <script src="scripts/app.js"></script>
-<script src="../bower_components/leaflet/dist/leaflet-src.js"></script>
+
 <!-- endbuild-->
 </body>
 </html>

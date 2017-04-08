@@ -78,13 +78,17 @@
       }
       
     </style>
-<paper-button on-click="feedback" show$={{!user}}>Sign In</paper-button>
+
+
+   
+<paper-button on-click="feedback"  hidden$="{{user}}">Sign In</paper-button>
+<paper-button raised on-click="signOut" hidden$="{{!user}}">Sign Out</paper-button>
 <!--<paper-button raised onclick="document.querySelector('#animated').toggle()">Sign In</paper-button>-->
 <!--<a href="javascript:void(0)" show$="{{!user}}" class="singin-link" on-click="signInClick">Sign in</a>-->
 <!-- entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop -->
-<tab-a hidden$="{{hide}}"></tab-a>
+
 <paper-dialog id="dialogFeedback" class="login-form" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
-  <link rel="stylesheet" href="login-form.css" />
+
     <style is="custom-style">
       :root {
          --paper-tabs-selection-bar-color: black;
@@ -99,21 +103,15 @@
       
       <iron-pages selected="{{selected}}">
         <tab-a></tab-a>
-        <tab-b></tab-b>
+        <tab-b user="{{user}}" id="social"></tab-b>
         <tab-c></tab-c>
       </iron-pages>
 </paper-dialog>
-
-
-<!--<a href="javascript:void(0)" show$="{{!user}}" class="singin-link" on-click="signInClick">Sign in</a>-->
-
-    <template is="dom-if" if="[[user]]">
-      <h1> Welcome [[user.displayName]]</h1>
-    </template>
-   
-    <div class="account-menu" show$="{{user}}">
+ 
+  
+    <div class="account-menu" >
       <div class="profile-pic dropdown-trigger" on-click="open">
-        <img src="{{profile.picture}}">
+        <!--<img src="{{profile.picture}}">-->
       </div>
 
       <iron-dropdown id="dropdown"
@@ -123,9 +121,9 @@
                      close-animation-config="[[closeAnimationConfig]]">
 
         <div class="dropdown-content">
-          <div class="username"><span>{{profile.name}}</span> <span>{{profile.lastname}}</span></div>
+          <div class="username"><span>{{user.name}}</span> <span>{{user.lastname}}</span></div>
           <a data-route="user-profile" href="/user-profile" on-click="close">Profile</a>
-          <a href="javascript:void(0)" on-click="signOutClick">Sign out</a>
+          <a href="javascript:void(0)" on-click="signOut">Sign out</a>
         </div>
 
       </iron-dropdown>
@@ -160,16 +158,14 @@
         },
 
         properties: {
-          hide: {
-                    type: Boolean,
-                    value: true // init the value to true so it will be hidden on page load
-                },
+          user:{
+            type: Object,
+            notify: true
+          },
+        
           selected: {
             type: Number,
             value: 0
-          },
-          profile: {
-            type: Object
           },
           openAnimationConfig: {
             type: Array,
@@ -208,8 +204,8 @@
           this.fire('sign-out');
         },
 
-        signInClick: function() {
-          this.fire('sign-in');
+        signOut: function() {
+          return this.$.social.logout();
         },
 
         open: function() {

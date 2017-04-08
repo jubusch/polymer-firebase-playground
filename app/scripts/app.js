@@ -9,7 +9,7 @@
       document.querySelector('#caching-complete').show();
     }
   };
-
+  
   // Toggle Drawer
   app.toggleDrawer = function() {
     var drawerPanel = document.getElementById('paperDrawerPanel');
@@ -29,7 +29,7 @@
   app.cols = '2';
 
   // Firebase location
-  app.location = 'https://polymer-admin.firebaseio.com';
+  app.location = 'https://nito-42880.firebaseio.com';
 
   // Sign out user
   app.signOut = function() {
@@ -38,7 +38,7 @@
 
   // Sign in user
   app.signIn = function() {
-    this.$.data.signIn();
+    this.$.auth.signInWithPopup();
   };
 
 })(document);

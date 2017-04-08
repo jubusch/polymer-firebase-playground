@@ -2,6 +2,8 @@
 html /deep/ .login-form {
     background: #4c4c4c;
     color: #ffffff;
+    width:"500px";
+    height:"500px";
 }
 html /deep/ .login-form >    :host {
       @apply(--layout-horizontal);

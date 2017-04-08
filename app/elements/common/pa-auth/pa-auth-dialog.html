@@ -1,7 +1,4 @@
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../polymerfire/firebase-auth.html">
-<link rel="import" href="../paper-button/paper-button.html">
-<link rel="import" href="../paper-input/paper-input.html">
+
 <dom-module id="pa-auth-dialog">
 <template>
   <style>
@@ -72,8 +69,7 @@
   <div id="divider" class="horizontalDivider">
         <div>or</div>
   </div>
-   <firebase-auth app-name="{{appName}}" id="emailPassword" user="{{user}}" signed-in="{{signedIn}}" on-error="_handleEmailPWError" status-known="{{statusKnown}}">
-  </firebase-auth>
+
     <form on-submit="_signInEmailPW">
     <paper-input id="emailInput" type="email" label="Email" value="{{email}}" validator="email-validator" error-message="Invalid email address" required auto-validate></paper-input>
     <paper-input id="pwInput" type="password" label="Password" value="{{pw}}" required></paper-input>
