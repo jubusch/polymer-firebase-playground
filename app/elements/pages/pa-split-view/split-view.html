@@ -1,0 +1,27 @@
+<dom-module id="split-view">
+  <template>
+    <style include="shared-styles"></style>
+    <style>
+      
+    </style>
+
+   <vaadin-split-layout style="height: 100%;">
+    <div><pdf-element src="./skript.pdf"  downloadable height="700" show-file-name enable-text-selection></pdf-element></div>
+     <div><pdf-element src="./skript.pdf"  downloadable height="700" show-file-name enable-text-selection></pdf-element></div>
+   </vaadin-split-layout>
+
+  </template>
+
+  <script>
+    (function() {
+      'use strict';
+
+      Polymer({
+        is: 'split-view',
+
+        
+      });
+    })();
+  </script>
+
+</dom-module>
